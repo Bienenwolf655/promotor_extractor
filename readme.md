@@ -9,4 +9,5 @@ python BEDT.py bedfile genelist genomefasta intermediatefolder shscript --promot
 
 ## with example data:
 
+cd /example_data
 python ../BEDT.py CH.bed ./genelist_query_x.txt ./CH.fasta ./test42 ../bedtools.sh
