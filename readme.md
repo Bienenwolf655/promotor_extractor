@@ -7,7 +7,7 @@ It uses in the background the bedtools command line tool. An example output can 
 
 python BEDT.py bedfile genelist genomefasta intermediatefolder shscript --promotorregion
 
-## with example data:
+## with example data (from the Magnaporthe oryzae MG8):
 
 1. cd /example_data
-2. python ../BEDT.py CH.bed ./genelist_query_x.txt ./CH.fasta ./test42 ../bedtools.sh
+2. python ../BEDT.py MO.bed ./genelist_subject_x.txt ./MO.fasta ./test42 ../bedtools.sh
