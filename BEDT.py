@@ -57,7 +57,7 @@ def main(args):
         GeneList = fn.read()
         GeneList = GeneList.split('\n')
 
-    data = df['name'].isin(GeneList)
+    data = df['name'].apply(lambda x: any([k in x for k in GeneList]))
     entr = []
     for idx, i in enumerate(data.values):
         if i == True:
@@ -68,9 +68,9 @@ def main(args):
     df2[df2['strand']=='-']
 
     sel_gen = list(df2['name'])
-    ingenes = list(set([i for i in sel_gen if sel_gen.count(i) > 1])) #list of genes with introns
+    ingenes = [gene for gene in GeneList if sum(str(gene) in s for s in sel_gen) > 1]
     for idx,_ in enumerate(ingenes):
-        sl = df2[df2['name']==ingenes[idx]]
+        sl = df2[df2['name'] in ingenes[idx]]
         sl.reset_index(inplace = True)
         df2.drop(labels= df2.index[df2['name']==ingenes[idx]].tolist(), axis=0, inplace=True)
         sub=pd.Series([sl.loc[len(sl)-1]['chrom'],sl.loc[len(sl)-1]['chromStart'], sl.loc[len(sl)-1]['chromEnd'],ingenes[idx],sl.loc[len(sl)-1]['score'],sl.loc[len(sl)-1]['strand']],index = df2.columns)
